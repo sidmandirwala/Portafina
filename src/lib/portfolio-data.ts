@@ -12,9 +12,12 @@ WORK:
 - Full Stack Intern, Bharat Tech Labs (Jul–Aug 2023): Built Postminder scheduling platform. Redis job queue handling 500+ posts/day at 99.5% uptime. Reduced production incidents by 30%. Tech: Vue.js, Node.js, Redis, PostgreSQL.
 
 PROJECTS:
-- Predicting 30-Day Patient Readmission (May 2025): Predictive system on MIMIC-III dataset (10K+ patients), 78% accuracy with Logistic Regression, Random Forest, XGBoost. Tech: Python, scikit-learn, Pandas, XGBoost.
-- RAG-Based Q&A System (Nov–Dec 2024): Domain-specific RAG with LangChain + Qdrant for semantic retrieval. 40% faster response, 25% better relevance. Tech: Python, LangChain, Qdrant, NLP.
-- Financial Literacy Bayesian Analysis (Nov 2024): Bayesian regression on 1K-student dataset, higher literacy = 2.5-unit savings increase. Tech: Python, PyMC3, NumPy.
+- Portafina (Jan 2026): Modern responsive portfolio website with Next.js, React, Tailwind CSS, smooth animations, and theme support. Includes AI-powered personal assistant, secure lead capture, and real-time streaming responses. GitHub link: github.com/sidmandirwala/Portafina. Tech: Next.js, React, TypeScript, Tailwind, AI Integration.
+- Vizpromax (Sep–Dec 2025): Interactive data visualization platform analyzing spatio-temporal crime patterns in NYC over the past decade. Narrative-driven visualizations with multi-dimensional filtering and interactive dashboards. Live: vizpromax.vercel.app. GitHub link: github.com/sidmandirwala/Vizpromax. Tech: D3, Data Visualization, Interactive Dashboards, Urban Analytics.
+- ReadmitIQ (May 2025): ML system predicting 30-day hospital readmission risk using MIMIC-III and UCI Diabetes datasets. Evaluated Logistic Regression, Random Forest, XGBoost with class-imbalance-robust metrics. GitHub link: github.com/sidmandirwala/ReadmitIQ. Tech: Python, scikit-learn, Pandas, XGBoost, Healthcare ML.
+- RAGStack (Nov–Dec 2024): End-to-end RAG system answering domain-specific questions from GitHub, Medium, and LinkedIn data. Modular pipeline with semantic embedding, Qdrant vector retrieval, and fine-tuned GPT-2. REST API and Gradio interface. GitHub link: github.com/sidmandirwala/RAGStack. Tech: Python, RAG, NLP, Qdrant, LLM Systems.
+- BayesWealth (Nov 2024): Bayesian causal modeling of age, financial literacy, and saving behavior. Probabilistic regression in PyMC with causal graphs, posterior inference, and uncertainty-aware insights. GitHub link: github.com/sidmandirwala/BayesWealth. Tech: Python, PyMC, Bayesian Statistics, Causal Inference.
+- PostMinder (Jul–Aug 2023): Full-stack Instagram post scheduling platform with automated publishing and background job processing. BullMQ/Redis task orchestration, PostgreSQL persistence, Docker deployment. GitHub link: github.com/sidmandirwala/PostMinder. Tech: Vue, Node.js, PostgreSQL, Redis, Docker.
 
 SKILLS:
 Languages: Python, JavaScript, TypeScript, Java, C/C++
