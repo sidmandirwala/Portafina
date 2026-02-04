@@ -8,35 +8,77 @@ interface Project {
   description: string[];
   tags: string[];
   link?: string;
+  demo?: string;
 }
 
 const projects: Project[] = [
   {
-    title: "Predicting 30-Day Patient Readmission",
+    title: "ReadmitIQ",
     period: "May 2025",
     description: [
-      "Built predictive analytics system using Python, scikit-learn, and Pandas to forecast hospital readmission risks from MIMIC-III dataset with 10,000+ patient records.",
-      "Achieved 78% accuracy with Logistic Regression, Random Forest, and XGBoost using stratified k-fold cross-validation.",
+      "Built a machine learning system to predict 30-day hospital readmission risk using real-world clinical data from the MIMIC-III and UCI Diabetes datasets.",
+      "Engineered demographic, clinical, and temporal features and evaluated Logistic Regression, Random Forest, and XGBoost models with metrics robust to class imbalance.",
+      "Demonstrated how predictive analytics can support proactive care planning, optimized resource allocation, and improved patient outcomes."
     ],
-    tags: ["Python", "scikit-learn", "Pandas", "XGBoost", "ML"],
+    tags: ["Python", "scikit-learn", "Pandas", "XGBoost", "Healthcare ML"],
+    link: "https://github.com/sidmandirwala/ReadmitIQ",
   },
   {
-    title: "RAG-Based Intelligent Q&A System",
+    title: "RAGStack",
     period: "Nov 2024 — Dec 2024",
     description: [
-      "Built domain-specific RAG system using Python, LangChain, and Qdrant vector database for semantic document retrieval and NL answer generation.",
-      "Optimized query pipeline with caching and async processing, reducing response time by 40% while improving relevance by 25%.",
+      "Developed an end-to-end Retrieval-Augmented Generation (RAG) system that answers domain-specific questions using data aggregated from GitHub, Medium, and LinkedIn.",
+      "Designed a modular pipeline for data crawling, cleaning, semantic embedding, and vector retrieval using Qdrant, with a fine-tuned GPT-2 model for answer generation.",
+      "Exposed the system through a REST API and an interactive Gradio interface, emphasizing efficiency, modularity, and practical LLM deployment constraints."
     ],
-    tags: ["Python", "LangChain", "Qdrant", "RAG", "NLP"],
+    tags: ["Python", "RAG", "NLP", "Qdrant", "LLM Systems"],
+    link: "https://github.com/sidmandirwala/RAGStack",
   },
   {
-    title: "Financial Literacy & Saving Behavior: A Bayesian Approach",
+    title: "BayesWealth",
     period: "Nov 2024",
     description: [
-      "Constructed Bayesian regression model using PyMC3 analyzing 1,000-student dataset to quantify financial literacy and saving behavior relationships.",
-      "Validated model through posterior predictive checks, showing higher literacy correlates with 2.5-unit savings increase.",
+      "Analyzed the relationship between age, financial literacy, and saving behavior using a Bayesian causal modeling framework.",
+      "Modeled financial literacy as a mediating variable with probabilistic regression in PyMC, supported by causal graphs and posterior inference.",
+      "Applied posterior predictive checks and diagnostics to produce interpretable, uncertainty-aware insights into financial behavior."
     ],
-    tags: ["Python", "PyMC3", "NumPy", "Bayesian", "Statistics"],
+    tags: ["Python", "PyMC", "Bayesian Statistics", "Causal Inference"],
+    link: "https://github.com/sidmandirwala/BayesWealth",
+  },
+  {
+    title: "PostMinder",
+    period: "Jul 2023 - Aug 2023",
+    description: [
+      "Built a full-stack Instagram post scheduling platform with support for automated publishing and background job processing.",
+      "Implemented asynchronous task orchestration using BullMQ and Redis, backed by PostgreSQL for reliable data persistence and Docker-based deployment.",
+      "Designed the system to be scalable, modular, and production-ready for real-world social media workflows."
+    ],
+    tags: ["Vue", "Node.js", "PostgreSQL", "Redis", "Docker"],
+    link: "https://github.com/sidmandirwala/PostMinder",
+  },
+  {
+    title: "Portafina",
+    period: "Jan 2026",
+    description: [
+      "Developed a modern, responsive portfolio website using Next.js, React, and Tailwind CSS with smooth animations and theme support.",
+      "Integrated an AI-powered personal assistant trained to answer questions strictly about the developer's experience and projects.",
+      "Implemented secure lead capture, real-time streaming responses, and a polished user experience across devices."
+    ],
+    tags: ["Next.js", "React", "TypeScript", "Tailwind", "AI Integration"],
+    link: "https://github.com/sidmandirwala/Portafina",
+    demo: "https://siddhmandirwala.vercel.app"
+  },
+  {
+    title: "Vizpromax",
+    period: "Sep 2025 - Dec 2025",
+    description: [
+      "Created an interactive data visualization platform analyzing spatio-temporal crime patterns in New York City over the past decade.",
+      "Designed narrative-driven visualizations to explore crime trends across time, geography, and offense types.",
+      "Enabled multi-dimensional filtering and interactive dashboards to transform complex public safety data into actionable insights."
+    ],
+    tags: ["Data Visualization", "D3", "Interactive Dashboards", "Urban Analytics"],
+    link: "https://github.com/sidmandirwala/Vizpromax",
+    demo: "https://vizpromax.vercel.app",
   },
 ];
 
@@ -54,7 +96,14 @@ export default function Projects() {
         </AnimatedSection>
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {projects.map((project, index) => (
+          {[...projects].sort((a, b) => {
+            const parse = (p: string) => {
+              const parts = p.split(/[—\-–]/).map(s => s.trim());
+              const latest = parts[parts.length - 1];
+              return new Date(latest + " 1").getTime();
+            };
+            return parse(b.period) - parse(a.period);
+          }).map((project, index) => (
             <AnimatedSection key={project.title} delay={index * 0.1}>
               <div className="group flex h-full flex-col rounded-xl border border-card-border bg-card p-6 transition-all duration-300 hover:border-muted/40 hover:shadow-lg hover:shadow-black/20">
                 <div className="mb-3 flex items-start justify-between">
@@ -73,29 +122,35 @@ export default function Projects() {
                       />
                     </svg>
                   </div>
-                  {project.link && (
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-muted transition-colors hover:text-foreground"
-                      aria-label={`View ${project.title}`}
-                    >
-                      <svg
-                        className="h-5 w-5"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
+                  <div className="flex items-center gap-2">
+                    {project.demo && (
+                      <a
+                        href={project.demo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1.5 rounded-full bg-blue-500/10 px-3 py-1 text-xs font-medium text-blue-500 backdrop-blur-sm transition-all duration-200 hover:bg-blue-500/20"
+                        aria-label={`Live demo of ${project.title}`}
                       >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={1.5}
-                          d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                        />
-                      </svg>
-                    </a>
-                  )}
+                        <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                        </svg>
+                        Live
+                      </a>
+                    )}
+                    {project.link && (
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-muted opacity-0 transition-all duration-200 hover:text-foreground group-hover:opacity-100"
+                        aria-label={`View ${project.title} on GitHub`}
+                      >
+                        <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                      </a>
+                    )}
+                  </div>
                 </div>
 
                 <h3 className="mb-1 text-lg font-semibold text-foreground group-hover:text-accent-red transition-colors duration-200 md:text-xl">
