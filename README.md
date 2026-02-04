@@ -1,36 +1,33 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Siddh Mandirwala — Portfolio
 
-## Getting Started
+A modern, responsive portfolio website built with Next.js 16, React 19, and Tailwind CSS v4. Features smooth animations, dark/light theme support, and a fully responsive design across all devices.
 
-First, run the development server:
+**But here's the twist** — this isn't your typical portfolio. There's an AI chatbot sitting in the corner that knows everything about me. Go ahead, ask it anything about my experience, projects, or skills. It's powered by Google's **Gemma 3 4B** model and will *only* answer questions about me (nice try though, if you were planning to ask it for homework help).
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Tech Stack
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+| Layer | Technology |
+|-------|-----------|
+| Framework | [Next.js 16](https://nextjs.org) (App Router) |
+| UI | [React 19](https://react.dev) + [TypeScript](https://www.typescriptlang.org) |
+| Styling | [Tailwind CSS v4](https://tailwindcss.com) |
+| Animations | [Framer Motion](https://www.framer.com/motion) |
+| AI Chatbot | [Vercel AI SDK](https://sdk.vercel.ai) + [Google Gemma 3 4B](https://ai.google.dev) |
+| Lead Capture | [Supabase](https://supabase.com) (PostgreSQL) |
+| Deployment | [Vercel](https://vercel.com) |
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **AI Portfolio Assistant** — A floating chatbot powered by Gemma 3 4B via the Vercel AI SDK. Streams responses in real-time, handles follow-up questions, and stays strictly on-topic with anti-hallucination prompting.
+- **Lead Capture** — Visitors can unlock additional chatbot questions by filling a quick form. Data is stored securely in Supabase.
+- **Dark / Light Theme** — Full theme support with smooth transitions and consistent design tokens.
+- **Fully Responsive** — Optimized for mobile, tablet, and desktop. The chatbot goes full-screen on small devices with proper keyboard handling.
+- **Smooth Animations** — Section reveals, scroll-based progress, and micro-interactions powered by Framer Motion.
 
-## Learn More
+## License
 
-To learn more about Next.js, take a look at the following resources:
+This project and its source code belong to **Siddh Mandirwala**. Unauthorized use, reproduction, or distribution of this code — in whole or in part — without explicit written permission is **highly discouraged**. If you'd like to use or reference any part of this project, please reach out first.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Built by [Siddh Mandirwala](https://linkedin.com/in/siddh-mandirwala)

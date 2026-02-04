@@ -1,26 +1,82 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Dark theme (default) */
+:root,
+.dark {
+  --color-background: #0a0a0a;
+  --color-foreground: #ededed;
+  --color-accent-red: #EF4444;
+  --color-accent-green: #22C55E;
+  --color-muted: #a1a1aa;
+  --color-card: #141414;
+  --color-card-border: #262626;
+  --color-github: #f0f6fc;
+  --chat-shadow: rgba(0, 0, 0, 0.6);
+}
+
+/* Light theme */
+.light {
+  --color-background: #fafafa;
+  --color-foreground: #171717;
+  --color-accent-red: #DC2626;
+  --color-accent-green: #16A34A;
+  --color-muted: #414b5a;
+  --color-card: #ffffff;
+  --color-card-border: #d1d5db;
+  --color-github: #171515;
+  --chat-shadow: rgba(0, 0, 0, 0.12);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-background: var(--color-background);
+  --color-foreground: var(--color-foreground);
+  --color-accent-red: var(--color-accent-red);
+  --color-accent-green: var(--color-accent-green);
+  --color-muted: var(--color-muted);
+  --color-card: var(--color-card);
+  --color-card-border: var(--color-card-border);
+  --color-github: var(--color-github);
+  --font-heading: var(--font-heading);
+  --font-body: var(--font-body);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-body), sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading), sans-serif;
+}
+
+nav, nav a {
+  font-family: var(--font-heading), sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Hide scrollbar cross-browser */
+*::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+::selection {
+  background: rgba(239, 68, 68, 0.3);
+  color: #fff;
+}
+
+.light ::selection {
+  background: rgba(220, 38, 38, 0.2);
+  color: #171717;
 }
