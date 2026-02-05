@@ -21,37 +21,38 @@ export default function AnimatedSection({
     const el = ref.current;
     if (!el) return;
 
-    // Check if element is in viewport on mount — show instantly if so
-    const rect = el.getBoundingClientRect();
-    const inViewport =
-      rect.top < window.innerHeight && rect.bottom > 0;
+    let done = false;
 
-    if (inViewport) {
-      controls.set({ opacity: 1, y: 0 });
-    }
+    const show = () => {
+      if (done) return;
+      done = true;
+      controls.start({ opacity: 1, y: 0 });
+    };
 
-    let isVisible = inViewport;
-
+    // Observe for scroll-triggered entry (works on all screen sizes)
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
-          if (entry.isIntersecting && entry.intersectionRatio >= 0.2) {
-            if (!isVisible) {
-              isVisible = true;
-              controls.start({ opacity: 1, y: 0 });
-            }
-          } else if (!entry.isIntersecting && entry.intersectionRatio === 0) {
-            if (isVisible) {
-              isVisible = false;
-              controls.set({ opacity: 0, y: 40 });
-            }
+          if (entry.isIntersecting) {
+            show();
+            observer.unobserve(el);
           }
         }
       },
-      { threshold: [0, 0.2] }
+      { threshold: 0.1 }
     );
 
-    observer.observe(el);
+    // Wait one frame for layout to settle (handles reload + mobile address bar)
+    requestAnimationFrame(() => {
+      if (done) return;
+      const viewportH = window.innerHeight || document.documentElement.clientHeight;
+      const rect = el.getBoundingClientRect();
+      if (rect.top < viewportH && rect.bottom > 0) {
+        show();
+      } else {
+        observer.observe(el);
+      }
+    });
 
     return () => observer.disconnect();
   }, [controls]);

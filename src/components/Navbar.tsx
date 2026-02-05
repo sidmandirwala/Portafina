@@ -64,12 +64,7 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    if (window.innerWidth < 768) {
-      window.history.scrollRestoration = "manual";
-      window.scrollTo(0, 0);
-    } else {
-      window.history.scrollRestoration = "auto";
-    }
+    window.history.scrollRestoration = "auto";
   }, []);
 
   useEffect(() => {

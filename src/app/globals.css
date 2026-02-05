@@ -55,9 +55,6 @@ nav, nav a {
   font-family: var(--font-heading), sans-serif;
 }
 
-html {
-  scroll-behavior: smooth;
-}
 
 /* Hide scrollbar cross-browser */
 *::-webkit-scrollbar {

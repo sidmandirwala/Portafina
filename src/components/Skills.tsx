@@ -10,89 +10,83 @@ interface SkillCategory {
 
 const skillCategories: SkillCategory[] = [
   {
-  name: "Programming Languages",
-  color: "text-accent-red",
-  skills: ["Python", "JavaScript", "TypeScript", "Java", "C/C++"]
-},
-{
-  name: "Frontend Development",
-  color: "text-accent-green",
-  skills: [
-    "Next.js",
-    "React.js",
-    "Vue.js",
-    "Tailwind CSS",
-    "Vuetify",
-    "HTML5",
-    "CSS3",
-    "D3"
-  ],
-},
-{
-  name: "Backend & APIs",
-  color: "text-accent-red",
-  skills: [
-    "Node.js",
-    "Express.js",
-    "Django",
-    "RESTful APIs",
-    "GraphQL",
-    "Supabase"
-  ],
-},
-{
-  name: "Databases & Storage",
-  color: "text-accent-green",
-  skills: [
-    "PostgreSQL",
-    "MongoDB",
-    "MySQL",
-    "Redis",
-    "Qdrant"
-  ],
-},
-{
-  name: "DevOps, Infrastructure & Cloud",
-  color: "text-accent-red",
-  skills: [
-    "Git",
-    "GitHub",
-    "Docker",
-    "Kubernetes",
-    "Vercel",
-    "AWS",
-    "Firebase",
-    "CI/CD"
-  ],
-},
-{
-  name: "Artificial Intelligence & Machine Learning",
-  color: "text-accent-green",
-  skills: [
-    "Machine Learning",
-    "NLP",
-    "RAG",
-    "Bayesian Inference",
-    "scikit-learn",
-    "PyTorch",
-    "XGBoost",
-    "PyMC",
-    "SHAP",
-    "LLM Systems"
-  ],
-},
-{
-  name: "Data Engineering & Analytics",
-  color: "text-accent-red",
-  skills: [
-    "Apache Spark",
-    "PySpark",
-    "Pandas",
-    "Big Data Analytics",
-    "Urban Analytics",
-    "Data Visualization"
-  ],
-},
+    name: "Programming Languages",
+    color: "text-accent-red",
+    skills: ["Python", "JavaScript", "TypeScript", "Java", "C/C++"],
+  },
+  {
+    name: "Frontend Development",
+    color: "text-accent-green",
+    skills: [
+      "Next.js",
+      "React.js",
+      "Vue.js",
+      "Tailwind CSS",
+      "Vuetify",
+      "HTML5",
+      "CSS3",
+      "D3",
+    ],
+  },
+  {
+    name: "Backend & APIs",
+    color: "text-accent-red",
+    skills: [
+      "Node.js",
+      "Express.js",
+      "Django",
+      "RESTful APIs",
+      "GraphQL",
+      "Supabase",
+    ],
+  },
+  {
+    name: "Databases & Storage",
+    color: "text-accent-green",
+    skills: ["PostgreSQL", "MongoDB", "MySQL", "Redis", "Qdrant"],
+  },
+  {
+    name: "DevOps, Infrastructure & Cloud",
+    color: "text-accent-red",
+    skills: [
+      "Git",
+      "GitHub",
+      "Docker",
+      "Kubernetes",
+      "Vercel",
+      "AWS",
+      "Firebase",
+      "CI/CD",
+    ],
+  },
+  {
+    name: "Artificial Intelligence & Machine Learning",
+    color: "text-accent-green",
+    skills: [
+      "Machine Learning",
+      "NLP",
+      "RAG",
+      "Bayesian Inference",
+      "scikit-learn",
+      "PyTorch",
+      "XGBoost",
+      "PyMC",
+      "SHAP",
+      "LLM Systems",
+    ],
+  },
+  {
+    name: "Data Engineering & Analytics",
+    color: "text-accent-red",
+    skills: [
+      "Apache Spark",
+      "PySpark",
+      "Pandas",
+      "Big Data Analytics",
+      "Urban Analytics",
+      "Data Visualization",
+    ],
+  },
 ];
 
 export default function Skills() {
@@ -149,6 +143,14 @@ export default function Skills() {
               {
                 name: "Sustainability Educator",
                 org: "Surat Municipal Corporation",
+              },
+              {
+                name: "Advanced Excel Tutorial Online",
+                org: "Elearnmarkets",
+              },
+              {
+                name: "English Debate Coordinator",
+                org: "SCET",
               },
             ].map((cert) => (
               <div
