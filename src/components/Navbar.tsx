@@ -88,11 +88,14 @@ export default function Navbar() {
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     const href = e.currentTarget.getAttribute("href");
-    if (href) {
-      const target = document.querySelector(href);
-      target?.scrollIntoView({ behavior: "smooth" });
-    }
     setMobileOpen(false);
+    if (href) {
+      // Delay scroll until after mobile menu closes and layout settles
+      setTimeout(() => {
+        const target = document.querySelector(href);
+        target?.scrollIntoView({ behavior: "smooth" });
+      }, 250);
+    }
   };
 
   return (

@@ -177,7 +177,7 @@ export default function Projects() {
                           href={project.link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-muted opacity-0 transition-all duration-200 hover:text-foreground group-hover:opacity-100"
+                          className="text-muted transition-all duration-200 hover:text-foreground md:opacity-0 md:group-hover:opacity-100"
                           aria-label={`View ${project.title} on GitHub`}
                         >
                           <svg
