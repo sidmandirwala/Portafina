@@ -63,7 +63,6 @@ const skillCategories: SkillCategory[] = [
     name: "Artificial Intelligence & Machine Learning",
     color: "text-accent-green",
     skills: [
-      "Machine Learning",
       "NLP",
       "RAG",
       "Bayesian Inference",
