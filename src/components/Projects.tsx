@@ -16,9 +16,9 @@ const projects: Project[] = [
     title: "MTAnalytics",
     period: "Nov 2025 - Dec 2025",
     description: [
-      "Built a large-scale analytics and machine learning pipeline to analyze NYC MTA subway operations using 100GB+ of historical ridership, service, and accessibility data.",
-      "Processed data for 472+ subway stations with Apache Spark and PySpark, uncovering insights around ridership patterns, system reliability, accessibility gaps, and post-pandemic recovery.",
-      "Developed a station-level ridership forecasting model using XGBoost with SHAP-based interpretability to support data-driven transit planning and infrastructure investment decisions.",
+      "Built a large-scale analytics and machine learning pipeline to analyze NYC MTA subway operations using 100GB+ of ridership, service, and accessibility data.",
+      "Processed data for 472+ subway stations with Apache Spark and PySpark to uncover insights on ridership patterns, system reliability, accessibility gaps, and post-pandemic recovery.",
+      "Developed a station-level ridership forecasting model using XGBoost with SHAP-based interpretability to support data-driven transit planning decisions.",
     ],
     tags: [
       "Apache Spark",

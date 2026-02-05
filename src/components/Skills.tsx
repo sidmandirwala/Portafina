@@ -10,67 +10,89 @@ interface SkillCategory {
 
 const skillCategories: SkillCategory[] = [
   {
-    name: "Programming Languages",
-    color: "text-accent-red",
-    skills: ["Python", "JavaScript", "TypeScript", "Java", "C/C++"],
-  },
-  {
-    name: "Frontend",
-    color: "text-accent-green",
-    skills: [
-      "Next.js",
-      "React.js",
-      "Vue.js",
-      "TailwindCSS",
-      "Vuetify",
-      "HTML5",
-      "CSS3",
-    ],
-  },
-  {
-    name: "Backend",
-    color: "text-accent-red",
-    skills: [
-      "Node.js",
-      "Express.js",
-      "Django",
-      "Strapi CMS",
-      "RESTful APIs",
-      "GraphQL",
-      "Supabase"
-    ],
-  },
-  {
-    name: "Databases",
-    color: "text-accent-green",
-    skills: ["PostgreSQL", "MongoDB", "MySQL", "Redis"],
-  },
-  {
-    name: "DevOps & Cloud",
-    color: "text-accent-red",
-    skills: [
-      "Git",
-      "GitHub",
-      "Docker",
-      "Kubernetes",
-      "Vercel",
-      "AWS",
-      "Firebase",
-      "CI/CD",
-    ],
-  },
-  {
-    name: "AI / ML",
-    color: "text-accent-green",
-    skills: [
-      "NLP",
-      "RAG",
-      "Bayesian Inference",
-      "scikit-learn",
-      "PyTorch",
-      "Qdrant",
-    ],
-  },
+  name: "Programming Languages",
+  color: "text-accent-red",
+  skills: ["Python", "JavaScript", "TypeScript", "Java", "C/C++"]
+},
+{
+  name: "Frontend Development",
+  color: "text-accent-green",
+  skills: [
+    "Next.js",
+    "React.js",
+    "Vue.js",
+    "Tailwind CSS",
+    "Vuetify",
+    "HTML5",
+    "CSS3",
+    "D3"
+  ],
+},
+{
+  name: "Backend & APIs",
+  color: "text-accent-red",
+  skills: [
+    "Node.js",
+    "Express.js",
+    "Django",
+    "RESTful APIs",
+    "GraphQL",
+    "Supabase"
+  ],
+},
+{
+  name: "Databases & Storage",
+  color: "text-accent-green",
+  skills: [
+    "PostgreSQL",
+    "MongoDB",
+    "MySQL",
+    "Redis",
+    "Qdrant"
+  ],
+},
+{
+  name: "DevOps, Infrastructure & Cloud",
+  color: "text-accent-red",
+  skills: [
+    "Git",
+    "GitHub",
+    "Docker",
+    "Kubernetes",
+    "Vercel",
+    "AWS",
+    "Firebase",
+    "CI/CD"
+  ],
+},
+{
+  name: "Artificial Intelligence & Machine Learning",
+  color: "text-accent-green",
+  skills: [
+    "Machine Learning",
+    "NLP",
+    "RAG",
+    "Bayesian Inference",
+    "scikit-learn",
+    "PyTorch",
+    "XGBoost",
+    "PyMC",
+    "SHAP",
+    "LLM Systems"
+  ],
+},
+{
+  name: "Data Engineering & Analytics",
+  color: "text-accent-red",
+  skills: [
+    "Apache Spark",
+    "PySpark",
+    "Pandas",
+    "Big Data Analytics",
+    "Urban Analytics",
+    "Data Visualization"
+  ],
+},
 ];
 
 export default function Skills() {
@@ -86,12 +108,12 @@ export default function Skills() {
           </p>
         </AnimatedSection>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
           {skillCategories.map((category, index) => (
             <AnimatedSection key={category.name} delay={index * 0.08}>
-              <div className="group rounded-xl border border-card-border bg-card p-6 transition-all duration-300 hover:border-muted/40 hover:shadow-lg hover:shadow-black/20">
+              <div className="group">
                 <h3
-                  className={`mb-4 text-sm font-semibold uppercase tracking-wider md:text-base ${category.color}`}
+                  className={`mb-3 text-xs font-semibold uppercase tracking-widest md:text-sm ${category.color}`}
                 >
                   {category.name}
                 </h3>
@@ -99,7 +121,7 @@ export default function Skills() {
                   {category.skills.map((skill) => (
                     <span
                       key={skill}
-                      className="rounded-full border border-card-border bg-background px-3 py-1.5 text-sm text-foreground transition-colors duration-200 group-hover:border-muted/30 md:text-base md:px-4 md:py-2"
+                      className="rounded-md border border-card-border bg-card px-3 py-1.5 text-sm text-foreground transition-all duration-200 hover:border-muted/50 hover:bg-card-border/30"
                     >
                       {skill}
                     </span>
@@ -110,7 +132,7 @@ export default function Skills() {
           ))}
         </div>
 
-        <AnimatedSection delay={0.3} className="mt-12">
+        <AnimatedSection delay={0.3} className="mt-20">
           <h3 className="mb-6 text-center text-xl font-semibold md:text-2xl lg:text-3xl">
             Certifications
           </h3>
