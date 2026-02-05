@@ -13,6 +13,18 @@ interface Project {
 
 const projects: Project[] = [
   {
+    title: "Portafina",
+    period: "Jan 2026",
+    description: [
+      "Developed a modern, responsive portfolio website using Next.js, React, and Tailwind CSS with smooth animations and theme support.",
+      "Integrated an AI-powered personal assistant trained to answer questions strictly about the developer's experience and projects.",
+      "Implemented secure lead capture, real-time streaming responses, and a polished user experience across devices.",
+    ],
+    tags: ["Next.js", "React", "TypeScript", "Tailwind", "AI Integration"],
+    link: "https://github.com/sidmandirwala/Portafina",
+    demo: "https://siddhmandirwala.vercel.app",
+  },
+  {
     title: "MTAnalytics",
     period: "Nov 2025 - Dec 2025",
     description: [
@@ -29,6 +41,23 @@ const projects: Project[] = [
       "Urban Mobility",
     ],
     link: "https://github.com/sidmandirwala/MTAnalytics",
+  },
+  {
+    title: "Vizpromax",
+    period: "Sep 2025 - Dec 2025",
+    description: [
+      "Created an interactive data visualization platform analyzing spatio-temporal crime patterns in New York City over the past decade.",
+      "Designed narrative-driven visualizations to explore crime trends across time, geography, and offense types.",
+      "Enabled multi-dimensional filtering and interactive dashboards to transform complex public safety data into actionable insights.",
+    ],
+    tags: [
+      "Data Visualization",
+      "D3",
+      "Interactive Dashboards",
+      "Urban Analytics",
+    ],
+    link: "https://github.com/sidmandirwala/Vizpromax",
+    demo: "https://vizpromax.vercel.app",
   },
   {
     title: "ReadmitIQ",
@@ -74,35 +103,6 @@ const projects: Project[] = [
     tags: ["Vue", "Node.js", "PostgreSQL", "Redis", "Docker"],
     link: "https://github.com/sidmandirwala/PostMinder",
   },
-  {
-    title: "Portafina",
-    period: "Jan 2026",
-    description: [
-      "Developed a modern, responsive portfolio website using Next.js, React, and Tailwind CSS with smooth animations and theme support.",
-      "Integrated an AI-powered personal assistant trained to answer questions strictly about the developer's experience and projects.",
-      "Implemented secure lead capture, real-time streaming responses, and a polished user experience across devices.",
-    ],
-    tags: ["Next.js", "React", "TypeScript", "Tailwind", "AI Integration"],
-    link: "https://github.com/sidmandirwala/Portafina",
-    demo: "https://siddhmandirwala.vercel.app",
-  },
-  {
-    title: "Vizpromax",
-    period: "Sep 2025 - Dec 2025",
-    description: [
-      "Created an interactive data visualization platform analyzing spatio-temporal crime patterns in New York City over the past decade.",
-      "Designed narrative-driven visualizations to explore crime trends across time, geography, and offense types.",
-      "Enabled multi-dimensional filtering and interactive dashboards to transform complex public safety data into actionable insights.",
-    ],
-    tags: [
-      "Data Visualization",
-      "D3",
-      "Interactive Dashboards",
-      "Urban Analytics",
-    ],
-    link: "https://github.com/sidmandirwala/Vizpromax",
-    demo: "https://vizpromax.vercel.app",
-  },
 ];
 
 export default function Projects() {
@@ -119,16 +119,7 @@ export default function Projects() {
         </AnimatedSection>
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {[...projects]
-            .sort((a, b) => {
-              const parse = (p: string) => {
-                const parts = p.split(/[—\-–]/).map((s) => s.trim());
-                const latest = parts[parts.length - 1];
-                return new Date(latest + " 1").getTime();
-              };
-              return parse(b.period) - parse(a.period);
-            })
-            .map((project, index) => (
+          {projects.map((project, index) => (
               <AnimatedSection key={project.title} delay={index * 0.1}>
                 <div className="group flex h-full flex-col rounded-xl border border-card-border bg-card p-6 transition-all duration-300 hover:border-muted/40 hover:shadow-lg hover:shadow-black/20">
                   <div className="mb-3 flex items-start justify-between">
