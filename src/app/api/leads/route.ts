@@ -10,7 +10,12 @@ const supabase = createClient(
 );
 
 export async function POST(req: Request) {
-  const body = await req.json();
+  let body;
+  try {
+    body = await req.json();
+  } catch {
+    return Response.json({ error: "Invalid request body" }, { status: 400 });
+  }
   const { name, email, website, loaded_at } = body;
 
   // Honeypot check — bots fill hidden fields, real users don't
