@@ -4,12 +4,13 @@ const isDev = process.env.NODE_ENV === "development";
 
 // Content Security Policy
 // - 'unsafe-inline' for style-src is required by Framer Motion (runtime inline styles)
+// - 'unsafe-inline' for script-src is required by Next.js (inline hydration scripts)
 // - 'unsafe-eval' is only added in development (Next.js fast refresh uses eval())
-// In development, Next.js needs 'unsafe-eval' + 'unsafe-inline' for scripts (fast refresh / HMR)
-// and ws: for the HMR WebSocket connection. Production uses a strict policy.
+// In development, Next.js also needs 'unsafe-eval' for scripts (fast refresh / HMR)
+// and ws: for the HMR WebSocket connection.
 const cspHeader = `
   default-src 'self';
-  script-src 'self'${isDev ? " 'unsafe-eval' 'unsafe-inline'" : ""};
+  script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""};
   style-src 'self' 'unsafe-inline';
   img-src 'self' blob: data:;
   font-src 'self';
