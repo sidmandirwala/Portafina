@@ -22,7 +22,7 @@ export const viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Portfolio | Siddh Mandirwala",
+  title: "Siddh Mandirwala",
   description:
     "Portfolio of Siddh Mandirwala — Software Engineer, MS Computer Science @ NYU. Building modern web experiences with Next.js, React, and Node.js.",
   keywords: [

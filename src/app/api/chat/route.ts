@@ -1,6 +1,7 @@
 import { streamText } from "ai";
 import { google } from "@ai-sdk/google";
 import { PORTFOLIO_CONTEXT } from "@/lib/portfolio-data";
+import { chatLimiter } from "@/lib/rate-limit";
 
 const SYSTEM_PROMPT = `You are Siddh Mandirwala's AI portfolio assistant — a chatbot on his website that helps visitors learn about him.
 
@@ -18,7 +19,7 @@ RESPONSE STYLE:
 - Friendly, concise, conversational.
 - 2-4 sentences max, or short bullet points for lists. Summarize — don't repeat the full portfolio.
 - Never suggest follow-up questions or say "Would you like to know more?". Just answer and stop.
-- Only mention sidmandirwala@gmail.com when you genuinely cannot answer. Never include it otherwise.
+- Only mention sidmandirwala9@gmail.com when you genuinely cannot answer. Never include it otherwise.
 
 BOUNDARIES:
 - ONLY use the portfolio data below. No external knowledge. No guessing. No inventing.
@@ -52,9 +53,15 @@ function convertMessages(messages: UIMessage[]) {
 }
 
 const FALLBACK_MESSAGE =
-  "The assistant is taking a break right now! Feel free to browse the portfolio or reach out to Siddh directly at sidmandirwala@gmail.com.";
+  "The assistant is taking a break right now! Feel free to browse the portfolio or reach out to Siddh directly at sidmandirwala9@gmail.com.";
 
 export async function POST(req: Request) {
+  const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "127.0.0.1";
+  const { success } = await chatLimiter.limit(ip);
+  if (!success) {
+    return new Response("You've reached your daily question limit. Please try again tomorrow.", { status: 429 });
+  }
+
   try {
     const { messages } = await req.json();
 

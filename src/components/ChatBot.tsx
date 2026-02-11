@@ -7,8 +7,8 @@ import { useState, useRef, useEffect, useCallback } from "react";
 const FREE_LIMIT = 3;
 const SIGNED_LIMIT = 6;
 
-const NAME_REGEX = /^[a-zA-Z\s]{3,}$/;
-const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+const NAME_REGEX = /^[a-zA-ZÀ-ÖØ-öø-ÿ' \-.]{2,100}$/;
+const EMAIL_REGEX = /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/;
 
 const SUGGESTED_QUESTIONS = [
   "What projects has Siddh built?",
@@ -61,10 +61,14 @@ export default function ChatBot() {
   const [leadSubmitting, setLeadSubmitting] = useState(false);
   const [nameError, setNameError] = useState("");
   const [emailError, setEmailError] = useState("");
+  const [formError, setFormError] = useState("");
+  const [honeypot, setHoneypot] = useState("");
+  const loadedAtRef = useRef(Date.now());
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const chatWindowRef = useRef<HTMLDivElement>(null);
+  const lastErrorRef = useRef<Error | undefined>(undefined);
 
   const { messages, sendMessage, status, error } = useChat({
     transport: new TextStreamChatTransport({ api: "/api/chat" }),
@@ -86,6 +90,18 @@ export default function ChatBot() {
     setDailyCount(getDailyCount());
     setSigned(isSigned());
   }, []);
+
+  // Roll back question count on chat error so user doesn't lose a slot
+  useEffect(() => {
+    if (error && error !== lastErrorRef.current) {
+      lastErrorRef.current = error;
+      setDailyCount((prev) => {
+        const rolled = Math.max(0, prev - 1);
+        saveDailyCount(rolled);
+        return rolled;
+      });
+    }
+  }, [error]);
 
   useEffect(() => {
     const timer = setTimeout(() => setShowLabel(false), 4000);
@@ -153,13 +169,13 @@ export default function ChatBot() {
     let valid = true;
 
     if (!NAME_REGEX.test(name)) {
-      setNameError("Please enter a valid name (letters only, at least 3 characters)");
+      setNameError("Please enter a valid name (at least 2 characters)");
       valid = false;
     } else {
       setNameError("");
     }
 
-    if (!EMAIL_REGEX.test(email)) {
+    if (email.length > 254 || !EMAIL_REGEX.test(email)) {
       setEmailError("Please enter a valid email address");
       valid = false;
     } else {
@@ -169,11 +185,12 @@ export default function ChatBot() {
     if (!valid) return;
 
     setLeadSubmitting(true);
+    setFormError("");
     try {
       const res = await fetch("/api/leads", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email }),
+        body: JSON.stringify({ name, email, website: honeypot, loaded_at: loadedAtRef.current }),
       });
       if (res.ok) {
         setSigned(true);
@@ -181,9 +198,13 @@ export default function ChatBot() {
         setShowForm(false);
         setLeadName("");
         setLeadEmail("");
+      } else if (res.status === 429) {
+        setFormError("Too many requests. Please try again later.");
+      } else {
+        setFormError("Something went wrong. Please try again.");
       }
     } catch {
-      // silently fail
+      setFormError("Something went wrong. Please try again.");
     } finally {
       setLeadSubmitting(false);
     }
@@ -265,7 +286,18 @@ export default function ChatBot() {
                   Your information will not be misused in any way — rest assured.
                   Please provide your genuine name and email. Stay true to yourself.
                 </p>
-                <form onSubmit={validateAndSubmitLead} className="flex flex-col gap-3">
+                <form onSubmit={validateAndSubmitLead} className="relative flex flex-col gap-3">
+                  {/* Honeypot — hidden from users, bots auto-fill it */}
+                  <input
+                    type="text"
+                    name="website"
+                    value={honeypot}
+                    onChange={(e) => setHoneypot(e.target.value)}
+                    tabIndex={-1}
+                    aria-hidden="true"
+                    autoComplete="one-time-code"
+                    className="absolute -left-[9999px] top-0 h-px w-px opacity-0 pointer-events-none overflow-hidden"
+                  />
                   <div>
                     <input
                       value={leadName}
@@ -295,6 +327,11 @@ export default function ChatBot() {
                   >
                     {leadSubmitting ? "Submitting..." : "Unlock more questions"}
                   </button>
+                  {formError && (
+                    <p className="mt-2 text-center text-[12px] text-accent-red">
+                      {formError}
+                    </p>
+                  )}
                 </form>
               </div>
             </>
@@ -402,10 +439,10 @@ export default function ChatBot() {
                     You have reached your daily question limit. For further inquiries,
                     please reach out to Siddh directly at{" "}
                     <a
-                      href="mailto:sidmandirwala@gmail.com"
+                      href="mailto:sidmandirwala9@gmail.com"
                       className="font-medium text-accent-red transition-colors hover:text-red-400"
                     >
-                      sidmandirwala@gmail.com
+                      sidmandirwala9@gmail.com
                     </a>
                   </p>
                 </div>
@@ -417,7 +454,7 @@ export default function ChatBot() {
                   <p className="text-[13px] leading-relaxed text-muted">
                     You&apos;ve used your free questions.{" "}
                     <button
-                      onClick={() => setShowForm(true)}
+                      onClick={() => { setShowForm(true); setFormError(""); }}
                       className="font-medium text-accent-red transition-colors hover:text-red-400"
                     >
                       Fill a quick form
@@ -463,7 +500,7 @@ export default function ChatBot() {
                         <span>·</span>
                         <button
                           type="button"
-                          onClick={() => setShowForm(true)}
+                          onClick={() => { setShowForm(true); setFormError(""); }}
                           className="text-accent-red/70 transition-colors hover:text-accent-red"
                         >
                           Get more
@@ -479,6 +516,15 @@ export default function ChatBot() {
       </div>
     </>
   );
+}
+
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
 }
 
 function MessageContent({
@@ -498,7 +544,9 @@ function MessageContent({
       {lines.map((line, i) => {
         if (!line.trim()) return <br key={i} />;
 
-        const formatted = line.replace(
+        // Escape HTML first, then apply bold formatting
+        const escaped = escapeHtml(line);
+        const formatted = escaped.replace(
           /\*\*(.*?)\*\*/g,
           '<strong class="font-semibold">$1</strong>'
         );

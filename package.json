@@ -12,10 +12,11 @@
     "@ai-sdk/google": "^3.0.20",
     "@ai-sdk/react": "^3.0.71",
     "@supabase/supabase-js": "^2.94.0",
+    "@upstash/ratelimit": "^2.0.8",
+    "@upstash/redis": "^1.36.2",
     "ai": "^6.0.69",
     "framer-motion": "^12.29.2",
     "next": "16.1.6",
-    "pdfjs-dist": "^5.4.624",
     "react": "19.2.3",
     "react-dom": "19.2.3"
   },

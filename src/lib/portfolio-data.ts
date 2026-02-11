@@ -37,5 +37,5 @@ LANGUAGES SPOKEN: English, Hindi, Gujarati (all proficient)
 
 STATUS: Seeking SWE/SDE roles starting May 2026. Open to full-stack, AI/ML, data science. Interested in startups and innovative tech companies.
 
-CONTACT: Email: sidmandirwala@gmail.com | LinkedIn: linkedin.com/in/siddh-mandirwala | GitHub: github.com/sidmandirwala
+CONTACT: Email: sidmandirwala9@gmail.com | LinkedIn: linkedin.com/in/siddh-mandirwala | GitHub: github.com/sidmandirwala
 `;

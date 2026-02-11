@@ -6,6 +6,7 @@ interface TimelineItem {
   type: "work" | "education";
   title: string;
   organization: string;
+  location: string;
   period: string;
   description: string[];
   tags?: string[];
@@ -16,6 +17,7 @@ const timelineData: TimelineItem[] = [
     type: "education",
     title: "Master of Science, Computer Science",
     organization: "New York University",
+    location: "New York, USA",
     period: "Sep 2024 — May 2026",
     description: [
       "GPA: 3.815/4.0",
@@ -26,7 +28,8 @@ const timelineData: TimelineItem[] = [
     type: "work",
     title: "Software Engineer Intern",
     organization: "AI4Purpose",
-    period: "Feb 10 — Present",
+    location: "New York, USA",
+    period: "Feb 2026 — Present",
     description: [
       "Migrated website from WordPress to Next.js with TailwindCSS, reducing page load times by 60%",
       "Architected responsive, mobile-first frontend components using Next.js App Router",
@@ -38,6 +41,7 @@ const timelineData: TimelineItem[] = [
     type: "work",
     title: "Software Development Engineer Intern",
     organization: "KeyToZ",
+    location: "Surat, India",
     period: "Jan 2024 — Jul 2024",
     description: [
       "Built healthcare platform features using Vue.js, React.js, Node.js/Strapi with PostgreSQL and GraphQL",
@@ -50,6 +54,7 @@ const timelineData: TimelineItem[] = [
     type: "work",
     title: "Full Stack Developer Intern",
     organization: "Bharat Tech Labs",
+    location: "Surat, India",
     period: "Jul 2023 — Aug 2023",
     description: [
       "Built Postminder social media scheduling platform with Vue.js, Node.js, Redis, and PostgreSQL",
@@ -62,6 +67,7 @@ const timelineData: TimelineItem[] = [
     type: "education",
     title: "Bachelor of Engineering, Computer Engineering",
     organization: "Gujarat Technological University",
+    location: "Surat, India",
     period: "Sep 2020 — Jun 2024",
     description: [
       "GPA: 9.20/10.0 (3.68/4.0)",
@@ -124,7 +130,7 @@ export default function Experience() {
                   {item.title}
                 </h3>
                 <p className="mb-1 text-sm font-medium text-muted md:text-base">
-                  {item.organization}
+                  {item.organization} · {item.location}
                 </p>
                 <p className="mb-3 text-xs text-muted/70 md:text-sm">{item.period}</p>
                 <ul className="mb-3 space-y-1.5">

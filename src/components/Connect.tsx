@@ -13,8 +13,8 @@ interface ContactLink {
 const contactLinks: ContactLink[] = [
   {
     label: "Email",
-    value: "sidmandirwala@gmail.com",
-    href: "mailto:sidmandirwala@gmail.com",
+    value: "sidmandirwala9@gmail.com",
+    href: "mailto:sidmandirwala9@gmail.com",
     hoverColor: "group-hover:text-accent-red",
     icon: (
       <svg
