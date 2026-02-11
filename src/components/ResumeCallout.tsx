@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import AnimatedSection from "./AnimatedSection";
+import PrivacyPolicy from "@/components/PrivacyPolicy";
 
 const NAME_REGEX = /^[a-zA-ZÀ-ÖØ-öø-ÿ' \-.]{2,100}$/;
 const EMAIL_REGEX = /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/;
@@ -231,14 +232,8 @@ export default function ResumeCallout() {
                   </motion.div>
                 ) : (
                   <>
-                    <p className="mb-2 text-center text-[15px] font-medium text-foreground">
+                    <p className="mb-6 text-center text-[15px] font-medium text-foreground">
                       Enter your details to request the resume
-                    </p>
-                    <p className="mb-6 text-center text-[12px] leading-relaxed text-muted">
-                      This is solely for Siddh&apos;s knowledge that you visited
-                      his portfolio. Your information will not be misused in any
-                      way — rest assured. Please provide your genuine name and
-                      email. Stay true to yourself.
                     </p>
                     <form
                       onSubmit={validateAndSubmitLead}
@@ -263,11 +258,10 @@ export default function ResumeCallout() {
                             setNameError("");
                           }}
                           placeholder="Your full name"
-                          className={`w-full rounded-lg border bg-background px-4 py-2.5 text-[16px] sm:text-[14px] text-foreground placeholder:text-muted/60 focus:outline-none ${
-                            nameError
-                              ? "border-accent-red"
-                              : "border-card-border focus:border-accent-red/50"
-                          }`}
+                          className={`w-full rounded-lg border bg-background px-4 py-2.5 text-[16px] sm:text-[14px] text-foreground placeholder:text-muted/60 focus:outline-none ${nameError
+                            ? "border-accent-red"
+                            : "border-card-border focus:border-accent-red/50"
+                            }`}
                         />
                         {nameError && (
                           <p className="mt-1 text-[11px] text-accent-red">
@@ -283,11 +277,10 @@ export default function ResumeCallout() {
                             setEmailError("");
                           }}
                           placeholder="Your email address"
-                          className={`w-full rounded-lg border bg-background px-4 py-2.5 text-[16px] sm:text-[14px] text-foreground placeholder:text-muted/60 focus:outline-none ${
-                            emailError
-                              ? "border-accent-red"
-                              : "border-card-border focus:border-accent-red/50"
-                          }`}
+                          className={`w-full rounded-lg border bg-background px-4 py-2.5 text-[16px] sm:text-[14px] text-foreground placeholder:text-muted/60 focus:outline-none ${emailError
+                            ? "border-accent-red"
+                            : "border-card-border focus:border-accent-red/50"
+                            }`}
                         />
                         {emailError && (
                           <p className="mt-1 text-[11px] text-accent-red">
@@ -303,13 +296,16 @@ export default function ResumeCallout() {
                         {leadSubmitting ? "Submitting..." : "Request Resume"}
                       </button>
                       {formError && (
-                        <p className="mt-2 text-center text-[12px] text-accent-red">
+                        <p className="text-center text-[12px] text-accent-red">
                           {formError}
                         </p>
                       )}
                     </form>
                   </>
                 )}
+              </div>
+              <div className="mt-auto flex justify-end px-6 pb-4">
+                <PrivacyPolicy className="text-[11px] text-muted/50 transition-colors duration-200 hover:text-accent-green" />
               </div>
             </motion.div>
           </motion.div>

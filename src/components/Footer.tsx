@@ -1,6 +1,7 @@
 "use client";
 
 import AnimatedSection from "./AnimatedSection";
+import PrivacyPolicy from "./PrivacyPolicy";
 
 export default function Footer() {
   return (
@@ -38,9 +39,11 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} Siddh Mandirwala. All rights
             reserved.
           </p>
-          <p className="text-xs text-muted/50 md:text-sm">
-            Built with Next.js & TailwindCSS
-          </p>
+          <div className="flex items-center gap-3 text-xs text-muted/50 md:text-sm">
+            <PrivacyPolicy />
+            <span>·</span>
+            <p>Built with Next.js & TailwindCSS</p>
+          </div>
         </div>
       </div>
     </footer>

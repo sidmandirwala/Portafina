@@ -3,6 +3,7 @@
 import { useChat } from "@ai-sdk/react";
 import { TextStreamChatTransport } from "ai";
 import { useState, useRef, useEffect, useCallback } from "react";
+import PrivacyPolicy from "@/components/PrivacyPolicy";
 
 const FREE_LIMIT = 3;
 const SIGNED_LIMIT = 6;
@@ -216,12 +217,11 @@ export default function ChatBot() {
       <button
         onClick={() => { setIsOpen(!isOpen); setShowLabel(false); }}
         aria-label={isOpen ? "Close chat" : "Open chat"}
-        className={`fixed bottom-6 right-6 z-[70] flex h-12 items-center justify-center rounded-full transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-          isOpen ? "scale-0 opacity-0" : "scale-100 opacity-100"
-        } ${showLabel
-          ? "w-[110px] gap-1.5 px-3 bg-accent-red text-white shadow-lg shadow-accent-red/25 hover:bg-red-600"
-          : "w-12 bg-accent-red text-white shadow-lg shadow-accent-red/25 hover:bg-red-600 sm:bg-accent-red sm:text-white sm:shadow-lg sm:shadow-accent-red/25 sm:hover:bg-red-600 max-sm:bg-background/20 max-sm:backdrop-blur-sm max-sm:border max-sm:border-accent-red max-sm:text-accent-red max-sm:shadow-none"
-        }`}
+        className={`fixed bottom-6 right-6 z-[70] flex h-12 items-center justify-center rounded-full transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${isOpen ? "scale-0 opacity-0" : "scale-100 opacity-100"
+          } ${showLabel
+            ? "w-[110px] gap-1.5 px-3 bg-accent-red text-white shadow-lg shadow-accent-red/25 hover:bg-red-600"
+            : "w-12 bg-accent-red text-white shadow-lg shadow-accent-red/25 hover:bg-red-600 sm:bg-accent-red sm:text-white sm:shadow-lg sm:shadow-accent-red/25 sm:hover:bg-red-600 max-sm:bg-background/20 max-sm:backdrop-blur-sm max-sm:border max-sm:border-accent-red max-sm:text-accent-red max-sm:shadow-none"
+          }`}
       >
         <svg
           className="h-6 w-6 shrink-0"
@@ -237,9 +237,8 @@ export default function ChatBot() {
           />
         </svg>
         <span
-          className={`whitespace-nowrap text-[13px] font-medium transition-all duration-500 ${
-            showLabel ? "w-auto opacity-100" : "w-0 opacity-0 overflow-hidden"
-          }`}
+          className={`whitespace-nowrap text-[13px] font-medium transition-all duration-500 ${showLabel ? "w-auto opacity-100" : "w-0 opacity-0 overflow-hidden"
+            }`}
         >
           Ask AI
         </span>
@@ -248,11 +247,10 @@ export default function ChatBot() {
       {/* Chat Window */}
       <div
         ref={chatWindowRef}
-        className={`fixed z-[70] transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-          isOpen
-            ? "scale-100 opacity-100"
-            : "pointer-events-none scale-95 opacity-0"
-        } bottom-4 right-4 left-4 top-4 sm:bottom-6 sm:right-6 sm:left-auto sm:top-auto sm:h-[560px] sm:w-[400px]`}
+        className={`fixed z-[70] transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${isOpen
+          ? "scale-100 opacity-100"
+          : "pointer-events-none scale-95 opacity-0"
+          } bottom-4 right-4 left-4 top-4 sm:bottom-6 sm:right-6 sm:left-auto sm:top-auto sm:h-[560px] sm:w-[400px]`}
       >
         <div className="flex h-full flex-col overflow-hidden rounded-2xl border border-card-border bg-card" style={{ boxShadow: "0 0 80px 25px var(--chat-shadow)" }}>
 
@@ -278,13 +276,8 @@ export default function ChatBot() {
                 </button>
               </div>
               <div className="flex flex-1 flex-col justify-center px-6 py-6">
-                <p className="mb-2 text-center text-[15px] font-medium text-foreground">
+                <p className="mb-6 text-center text-[15px] font-medium text-foreground">
                   Please enter your details
-                </p>
-                <p className="mb-6 text-center text-[12px] leading-relaxed text-muted">
-                  This is solely for Siddh&apos;s knowledge that you visited his portfolio.
-                  Your information will not be misused in any way — rest assured.
-                  Please provide your genuine name and email. Stay true to yourself.
                 </p>
                 <form onSubmit={validateAndSubmitLead} className="relative flex flex-col gap-3">
                   {/* Honeypot — hidden from users, bots auto-fill it */}
@@ -303,9 +296,8 @@ export default function ChatBot() {
                       value={leadName}
                       onChange={(e) => { setLeadName(e.target.value); setNameError(""); }}
                       placeholder="Your full name"
-                      className={`w-full rounded-lg border bg-background px-4 py-2.5 text-[16px] sm:text-[14px] text-foreground placeholder:text-muted/60 focus:outline-none ${
-                        nameError ? "border-accent-red" : "border-card-border focus:border-accent-red/50"
-                      }`}
+                      className={`w-full rounded-lg border bg-background px-4 py-2.5 text-[16px] sm:text-[14px] text-foreground placeholder:text-muted/60 focus:outline-none ${nameError ? "border-accent-red" : "border-card-border focus:border-accent-red/50"
+                        }`}
                     />
                     {nameError && <p className="mt-1 text-[11px] text-accent-red">{nameError}</p>}
                   </div>
@@ -314,9 +306,8 @@ export default function ChatBot() {
                       value={leadEmail}
                       onChange={(e) => { setLeadEmail(e.target.value); setEmailError(""); }}
                       placeholder="Your email address"
-                      className={`w-full rounded-lg border bg-background px-4 py-2.5 text-[16px] sm:text-[14px] text-foreground placeholder:text-muted/60 focus:outline-none ${
-                        emailError ? "border-accent-red" : "border-card-border focus:border-accent-red/50"
-                      }`}
+                      className={`w-full rounded-lg border bg-background px-4 py-2.5 text-[16px] sm:text-[14px] text-foreground placeholder:text-muted/60 focus:outline-none ${emailError ? "border-accent-red" : "border-card-border focus:border-accent-red/50"
+                        }`}
                     />
                     {emailError && <p className="mt-1 text-[11px] text-accent-red">{emailError}</p>}
                   </div>
@@ -328,11 +319,14 @@ export default function ChatBot() {
                     {leadSubmitting ? "Submitting..." : "Unlock more questions"}
                   </button>
                   {formError && (
-                    <p className="mt-2 text-center text-[12px] text-accent-red">
+                    <p className="text-center text-[12px] text-accent-red">
                       {formError}
                     </p>
                   )}
                 </form>
+              </div>
+              <div className="mt-auto flex justify-end px-6 pb-4">
+                <PrivacyPolicy className="text-[11px] text-muted/50 transition-colors duration-200 hover:text-accent-green" />
               </div>
             </>
           ) : (
@@ -392,16 +386,14 @@ export default function ChatBot() {
                   return (
                     <div
                       key={message.id}
-                      className={`mb-3 flex ${
-                        message.role === "user" ? "justify-end" : "justify-start"
-                      }`}
+                      className={`mb-3 flex ${message.role === "user" ? "justify-end" : "justify-start"
+                        }`}
                     >
                       <div
-                        className={`max-w-[85%] rounded-2xl px-4 py-2.5 text-[15px] leading-relaxed ${
-                          message.role === "user"
-                            ? "rounded-br-md bg-accent-red text-white"
-                            : "rounded-bl-md bg-background text-foreground"
-                        }`}
+                        className={`max-w-[85%] rounded-2xl px-4 py-2.5 text-[15px] leading-relaxed ${message.role === "user"
+                          ? "rounded-br-md bg-accent-red text-white"
+                          : "rounded-bl-md bg-background text-foreground"
+                          }`}
                       >
                         <MessageContent content={text} role={message.role} />
                       </div>
