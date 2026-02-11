@@ -8,6 +8,7 @@ const navLinks = [
   { label: "Experience", href: "#experience" },
   { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },
+  { label: "Resume", href: "/resume" },
   { label: "Connect", href: "#connect" },
 ];
 
@@ -86,8 +87,13 @@ export default function Navbar() {
   }, [lastScrollY]);
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
     const href = e.currentTarget.getAttribute("href");
+    // Let non-anchor links navigate normally
+    if (href && !href.startsWith("#")) {
+      setMobileOpen(false);
+      return;
+    }
+    e.preventDefault();
     setMobileOpen(false);
     if (href) {
       // Delay scroll until after mobile menu closes and layout settles

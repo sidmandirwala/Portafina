@@ -6,6 +6,7 @@ import Skills from "@/components/Skills";
 import Hobby from "@/components/Hobby";
 import WhatNext from "@/components/WhatNext";
 import Projects from "@/components/Projects";
+import ResumeCallout from "@/components/ResumeCallout";
 import Connect from "@/components/Connect";
 import Footer from "@/components/Footer";
 import ChatBot from "@/components/ChatBot";
@@ -26,6 +27,7 @@ export default function Home() {
         <Hobby />
         <WhatNext />
         <Projects />
+        <ResumeCallout />
         <Connect />
       <Footer />
       <ChatBot />
