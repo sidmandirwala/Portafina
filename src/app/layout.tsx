@@ -21,10 +21,13 @@ export const viewport = {
   maximumScale: 1,
 };
 
+const SITE_URL = "https://siddhmandirwala.vercel.app";
+
 export const metadata: Metadata = {
-  title: "Siddh Mandirwala",
+  metadataBase: new URL(SITE_URL),
+  title: "Siddh Mandirwala | Software Engineer",
   description:
-    "Portfolio of Siddh Mandirwala — Software Engineer, MS Computer Science @ NYU. Building modern web experiences with Next.js, React, and Node.js.",
+    "Portfolio of Siddh Mandirwala — Software Engineer and MS Computer Science student at NYU. Building full-stack web apps, AI systems, and data platforms with Next.js, React, Python, and Node.js.",
   keywords: [
     "Siddh Mandirwala",
     "Software Engineer",
@@ -32,13 +35,67 @@ export const metadata: Metadata = {
     "NYU",
     "Next.js",
     "React",
+    "Full Stack Developer",
+    "AI",
+    "Machine Learning",
   ],
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "Siddh Mandirwala | Software Engineer",
     description:
-      "Portfolio of Siddh Mandirwala — Software Engineer, MS Computer Science @ NYU.",
+      "Portfolio of Siddh Mandirwala — Software Engineer and MS Computer Science student at NYU. Building full-stack web apps, AI systems, and data platforms.",
+    url: SITE_URL,
+    siteName: "Siddh Mandirwala",
+    locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "/Siddh Photo.jpg",
+        width: 800,
+        height: 800,
+        alt: "Siddh Mandirwala — Software Engineer",
+      },
+    ],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Siddh Mandirwala | Software Engineer",
+    description:
+      "Portfolio of Siddh Mandirwala — Software Engineer and MS CS @ NYU.",
+    images: ["/Siddh Photo.jpg"],
+  },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Siddh Mandirwala",
+  url: SITE_URL,
+  image: `${SITE_URL}/Siddh Photo.jpg`,
+  jobTitle: "Software Engineer",
+  alumniOf: {
+    "@type": "CollegeOrUniversity",
+    name: "New York University",
+  },
+  sameAs: [
+    "https://www.linkedin.com/in/siddh-mandirwala",
+    "https://github.com/sidmandirwala",
+  ],
+  email: "mailto:sidmandirwala9@gmail.com",
+  knowsAbout: [
+    "Full-Stack Development",
+    "Next.js",
+    "React",
+    "Node.js",
+    "Python",
+    "Machine Learning",
+    "AI Systems",
+    "Data Science",
+    "Big Data",
+    "Algorithms"
+  ],
 };
 
 export default function RootLayout({
@@ -51,6 +108,10 @@ export default function RootLayout({
       <body
         className={`${familjenGrotesk.variable} ${inter.variable} antialiased`}
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>

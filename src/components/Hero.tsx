@@ -22,7 +22,7 @@ export default function Hero() {
           <div className="relative h-48 w-48 overflow-hidden rounded-full border-2 border-card-border md:h-64 md:w-64 lg:h-72 lg:w-72">
             <img
               src="/Siddh Photo.jpg"
-              alt="SM."
+              alt="Siddh Mandirwala — Software Engineer"
               className="h-full w-full object-cover"
             />
           </div>
