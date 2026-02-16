@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   description:
     "Portfolio of Siddh Mandirwala — Software Engineer and MS Computer Science student at NYU. Building full-stack web apps, AI systems, and data platforms with Next.js, React, Python, and Node.js.",
   verification: {
-    google: "kima8juAa0rWUSGGVnhSKkDNXIufoAsmqbdoMfrT0eY",
+    google: "CpewiN0wZmLyVq1-sUfDBZ-eClBBSKJQufySXMj3Zos",
   },
   keywords: [
     "Siddh Mandirwala",
