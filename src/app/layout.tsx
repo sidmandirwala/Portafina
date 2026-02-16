@@ -21,7 +21,7 @@ export const viewport = {
   maximumScale: 1,
 };
 
-const SITE_URL = "https://siddhmandirwala.vercel.app";
+const SITE_URL = "https://siddhmandirwala.dev";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
