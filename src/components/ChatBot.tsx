@@ -536,11 +536,25 @@ function MessageContent({
       {lines.map((line, i) => {
         if (!line.trim()) return <br key={i} />;
 
-        // Escape HTML first, then apply bold formatting
+        // Escape HTML first
         const escaped = escapeHtml(line);
-        const formatted = escaped.replace(
+
+        // Format bold text
+        let formatted = escaped.replace(
           /\*\*(.*?)\*\*/g,
           '<strong class="font-semibold">$1</strong>'
+        );
+
+        // Format Markdown links: [Text](URL)
+        formatted = formatted.replace(
+          /\[([^\]]+)\]\((https?:\/\/[^\)]+)\)/g,
+          '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-accent-red underline hover:text-red-500 transition-colors">$1</a>'
+        );
+
+        // fallback: Format raw URLs (http/https) if markdown wasn't used
+        formatted = formatted.replace(
+          /(?<!href=")(https?:\/\/[^\s<]+)/g,
+          '<a href="$1" target="_blank" rel="noopener noreferrer" class="text-accent-red underline hover:text-red-500 transition-colors">$1</a>'
         );
 
         if (line.trim().startsWith("- ") || line.trim().startsWith("* ")) {
