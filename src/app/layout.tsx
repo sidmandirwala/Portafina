@@ -25,22 +25,51 @@ const SITE_URL = "https://siddhmandirwala.dev";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "Siddh Mandirwala | Software Engineer",
+  title: "Siddh Mandirwala | Software Engineer | NYU MS Computer Science",
   description:
-    "Portfolio of Siddh Mandirwala — Software Engineer and MS Computer Science student at NYU. Building full-stack web apps, AI systems, and data platforms with Next.js, React, Python, and Node.js.",
+    "Siddh Mandirwala - Software Engineer and MS Computer Science student at New York University (NYU). Full-stack developer specializing in Next.js, React, Python, AI/ML systems, and data platforms. Previously at AI4Purpose, KeyToZ, and Bharat Tech Labs.",
   verification: {
     google: "CpewiN0wZmLyVq1-sUfDBZ-eClBBSKJQufySXMj3Zos",
+    // Add your Bing verification code here after setting up Bing Webmaster Tools
+    other: {
+      "msvalidate.01": "33CE266B4B78E72FF3933E11EA7497CC",
+    },
   },
   keywords: [
+    // Name variations
     "Siddh Mandirwala",
+    "Siddh",
+    "Mandirwala",
+    // Education & Location
+    "Siddh Mandirwala NYU",
+    "Siddh NYU",
+    "NYU Software Engineer",
+    "NYU Computer Science",
+    "New York University student",
+    "MS Computer Science NYU",
+    // Job Titles
     "Software Engineer",
-    "Portfolio",
-    "NYU",
-    "Next.js",
-    "React",
     "Full Stack Developer",
-    "AI",
-    "Machine Learning",
+    "Software Development Engineer",
+    "Frontend Developer",
+    "Backend Developer",
+    // Skills & Technologies
+    "Next.js Developer",
+    "React Developer",
+    "Python Developer",
+    "TypeScript Developer",
+    "Node.js Developer",
+    "AI Engineer",
+    "Machine Learning Engineer",
+    "Data Engineer",
+    // Experience
+    "AI4Purpose",
+    "KeyToZ",
+    "Bharat Tech Labs",
+    // General
+    "Software Engineer Portfolio",
+    "Web Developer Portfolio",
+    "Tech Portfolio",
   ],
   alternates: {
     canonical: "/",
