@@ -5,6 +5,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { createPortal } from "react-dom";
 import AnimatedSection from "./AnimatedSection";
 
+// Import react-pdf CSS - must be at top level (industry standard)
+import "react-pdf/dist/Page/AnnotationLayer.css";
+import "react-pdf/dist/Page/TextLayer.css";
+
 // Dynamic import for react-pdf to avoid SSR issues
 let Document: any = null;
 let Page: any = null;
@@ -29,10 +33,9 @@ export default function ResumeCallout() {
         // Use local worker file instead of CDN
         pdfjs.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs';
         setPdfLoaded(true);
+      }).catch((error) => {
+        console.error("Failed to load react-pdf:", error);
       });
-      // Import CSS (ignore TypeScript errors as these are loaded dynamically)
-      import("react-pdf/dist/Page/AnnotationLayer.css").catch(() => {});
-      import("react-pdf/dist/Page/TextLayer.css").catch(() => {});
     }
   }, [pdfLoaded]);
 
