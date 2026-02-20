@@ -13,8 +13,9 @@ const cspHeader = `
   script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""};
   style-src 'self' 'unsafe-inline';
   img-src 'self' blob: data:;
-  font-src 'self';
+  font-src 'self' data:;
   connect-src 'self'${isDev ? " ws:" : ""};
+  worker-src 'self' blob:;
   object-src 'none';
   base-uri 'self';
   form-action 'self';
