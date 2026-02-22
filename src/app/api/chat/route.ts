@@ -2,8 +2,14 @@ import { streamText } from "ai";
 import { google } from "@ai-sdk/google";
 import { PORTFOLIO_CONTEXT } from "@/lib/portfolio-data";
 import { chatLimiter } from "@/lib/rate-limit";
+import {
+  detectPromptInjection,
+  filterOutput,
+  hardenSystemPrompt,
+} from "@/lib/chat-security";
 
-const SYSTEM_PROMPT = `You are Siddh Mandirwala's AI portfolio assistant — a chatbot on his website that helps visitors learn about him.
+// Base system prompt (will be hardened with security header)
+const BASE_SYSTEM_PROMPT = `You are Siddh Mandirwala's AI portfolio assistant — a chatbot on his website that helps visitors learn about him.
 
 IDENTITY:
 - You are NOT Siddh. You are his AI assistant.
@@ -43,6 +49,9 @@ BOUNDARIES:
 PORTFOLIO DATA:
 ${PORTFOLIO_CONTEXT}`;
 
+// Apply Layer 3: System Prompt Hardening
+const SYSTEM_PROMPT = hardenSystemPrompt(BASE_SYSTEM_PROMPT);
+
 interface UIMessagePart {
   type: string;
   text?: string;
@@ -79,6 +88,58 @@ export async function POST(req: Request) {
   try {
     const { messages } = await req.json();
 
+    // Edge case: Validate messages array exists and has content
+    if (!messages || !Array.isArray(messages) || messages.length === 0) {
+      return new Response("Invalid request format", { status: 400 });
+    }
+
+    // Layer 1: Input Sanitization - Check the latest user message for prompt injection
+    const latestMessage = messages[messages.length - 1];
+    if (latestMessage?.role === "user") {
+      // Extract text from the message (handles both content and parts formats)
+      const userInput =
+        latestMessage.content ??
+        (latestMessage.parts ?? [])
+          .filter((p: UIMessagePart) => p.type === "text" && p.text)
+          .map((p: UIMessagePart) => p.text)
+          .join("");
+
+      // Detect prompt injection attempts
+      const detection = detectPromptInjection(userInput);
+
+      // If it's a legitimate security question, return helpful response as a stream
+      if (detection.isLegitQuestion && detection.response) {
+        const encoder = new TextEncoder();
+        const stream = new ReadableStream({
+          start(controller) {
+            controller.enqueue(encoder.encode(detection.response));
+            controller.close();
+          },
+        });
+        return new Response(stream, {
+          headers: {
+            "Content-Type": "text/plain; charset=utf-8",
+          },
+        });
+      }
+
+      // If it's an attack, return playful response as a stream
+      if (detection.isAttack && detection.response) {
+        const encoder = new TextEncoder();
+        const stream = new ReadableStream({
+          start(controller) {
+            controller.enqueue(encoder.encode(detection.response));
+            controller.close();
+          },
+        });
+        return new Response(stream, {
+          headers: {
+            "Content-Type": "text/plain; charset=utf-8",
+          },
+        });
+      }
+    }
+
     const result = streamText({
       model: google("gemma-3-4b-it"),
       system: SYSTEM_PROMPT,
@@ -90,29 +151,46 @@ export async function POST(req: Request) {
 
     const response = result.toTextStreamResponse();
 
-    // Consume a small chunk to catch immediate API errors
+    // Layer 2: Output Filtering - Scan the stream for leaked content
+    // We need to buffer the entire response to check for leaks before sending
     const reader = response.body?.getReader();
     if (!reader) throw new Error("No stream");
-    const { value } = await reader.read();
+
+    // Buffer all chunks to scan for leaked content
+    const decoder = new TextDecoder();
+    let fullText = "";
+
+    try {
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        if (value) {
+          // Decode and append to full text for scanning
+          fullText += decoder.decode(value, { stream: true });
+        }
+      }
+      // Final decode with stream: false
+      fullText += decoder.decode();
+    } catch (error) {
+      reader.releaseLock();
+      throw error;
+    }
+
     reader.releaseLock();
 
-    // If we got here, streaming works — return a new response with the first chunk reattached
-    const firstChunk = value ? new ReadableStream({
-      start(controller) {
-        controller.enqueue(value);
-        const pump = response.body!.getReader();
-        function read() {
-          pump.read().then(({ done, value }) => {
-            if (done) { controller.close(); return; }
-            controller.enqueue(value);
-            read();
-          }).catch(() => controller.close());
-        }
-        read();
-      }
-    }) : response.body;
+    // Check if the complete response contains leaked content
+    const filteredText = filterOutput(fullText);
 
-    return new Response(firstChunk, { headers: response.headers });
+    // Create a new stream with the filtered response
+    const filteredStream = new ReadableStream({
+      start(controller) {
+        const encoder = new TextEncoder();
+        controller.enqueue(encoder.encode(filteredText));
+        controller.close();
+      },
+    });
+
+    return new Response(filteredStream, { headers: response.headers });
   } catch {
     return new Response(FALLBACK_MESSAGE);
   }
