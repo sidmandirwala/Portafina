@@ -55,10 +55,10 @@ export default function Hero() {
             transition={{ duration: 0.5, delay: 0.4 }}
             className="mb-6 max-w-xl text-base leading-relaxed text-muted md:text-lg lg:text-xl"
           >
-            MS Computer Science student at NYU with hands-on experience
-            building full-stack web applications, healthcare platforms, and
-            AI-powered systems. Passionate about crafting performant,
-            user-centric digital experiences.
+            Software engineer in New York with an MS in Computer Science from
+            NYU, with hands-on experience building full-stack web applications,
+            real-time collaboration tools, and AI-powered systems. Passionate
+            about crafting performant, user-centric digital experiences.
           </motion.p>
 
           <motion.div

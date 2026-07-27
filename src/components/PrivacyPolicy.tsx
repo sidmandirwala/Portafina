@@ -198,10 +198,10 @@ function PolicyBody() {
                             If you have any questions or concerns about your data, feel
                             free to reach out at{" "}
                             <a
-                                href="mailto:sidmandirwala9@gmail.com"
+                                href="mailto:sidmandirwala@gmail.com"
                                 className="font-medium text-accent-red transition-colors hover:text-red-400"
                             >
-                                sidmandirwala9@gmail.com
+                                sidmandirwala@gmail.com
                             </a>
                         </p>
                     </div>

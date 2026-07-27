@@ -9,7 +9,6 @@ import Projects from "@/components/Projects";
 import ClientResumeCallout from "@/components/ClientResumeCallout";
 import Connect from "@/components/Connect";
 import Footer from "@/components/Footer";
-import ChatBot from "@/components/ChatBot";
 
 export default function Home() {
   return (
@@ -30,7 +29,6 @@ export default function Home() {
         <ClientResumeCallout />
         <Connect />
       <Footer />
-      <ChatBot />
     </div>
   );
 }

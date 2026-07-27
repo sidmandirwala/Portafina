@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: "Siddh Mandirwala | Software Engineer | NYU MS Computer Science",
   description:
-    "Siddh Mandirwala - Software Engineer and MS Computer Science student at New York University (NYU). Full-stack developer specializing in Next.js, React, Python, AI/ML systems, and data platforms. Previously at AI4Purpose, KeyToZ, and Bharat Tech Labs.",
+    "Siddh Mandirwala - Software Engineer in New York with an MS in Computer Science from New York University (NYU). Full-stack developer specializing in Next.js, React, Python, AI/ML systems, and real-time collaboration tools. Previously at AI4Purpose and KeyToZ.",
   verification: {
     google: "CpewiN0wZmLyVq1-sUfDBZ-eClBBSKJQufySXMj3Zos",
     // Add your Bing verification code here after setting up Bing Webmaster Tools
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     "Siddh NYU",
     "NYU Software Engineer",
     "NYU Computer Science",
-    "New York University student",
+    "New York University",
     "MS Computer Science NYU",
     // Job Titles
     "Software Engineer",
@@ -65,7 +65,6 @@ export const metadata: Metadata = {
     // Experience
     "AI4Purpose",
     "KeyToZ",
-    "Bharat Tech Labs",
     // General
     "Software Engineer Portfolio",
     "Web Developer Portfolio",
@@ -77,7 +76,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Siddh Mandirwala | Software Engineer",
     description:
-      "Portfolio of Siddh Mandirwala — Software Engineer and MS Computer Science student at NYU. Building full-stack web apps, AI systems, and data platforms.",
+      "Portfolio of Siddh Mandirwala — Software Engineer with an MS in Computer Science from NYU. Building full-stack web apps, AI systems, and real-time collaboration tools.",
     url: SITE_URL,
     siteName: "Siddh Mandirwala",
     locale: "en_US",
@@ -95,7 +94,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Siddh Mandirwala | Software Engineer",
     description:
-      "Portfolio of Siddh Mandirwala — Software Engineer and MS CS @ NYU.",
+      "Portfolio of Siddh Mandirwala — Software Engineer, MS CS from NYU.",
     images: ["/Siddh Photo.jpg"],
   },
 };
@@ -115,7 +114,7 @@ const jsonLd = {
     "https://www.linkedin.com/in/siddh-mandirwala",
     "https://github.com/sidmandirwala",
   ],
-  email: "mailto:sidmandirwala9@gmail.com",
+  email: "mailto:sidmandirwala@gmail.com",
   knowsAbout: [
     "Full-Stack Development",
     "Next.js",
@@ -124,6 +123,8 @@ const jsonLd = {
     "Python",
     "Machine Learning",
     "AI Systems",
+    "Retrieval-Augmented Generation",
+    "Real-Time Collaboration",
     "Data Science",
     "Big Data",
     "Algorithms"

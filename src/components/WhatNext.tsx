@@ -17,20 +17,20 @@ export default function WhatNext() {
             <p className="mb-6 text-base leading-relaxed text-muted md:text-lg lg:text-xl">
               I&apos;m currently seeking{" "}
               <span className="font-semibold text-foreground">
-                Software Engineer / Software Development Engineer
+                Software Engineer · AI/ML Engineer · Full-Stack / Frontend
               </span>{" "}
-              roles starting{" "}
+              roles and am{" "}
               <span className="font-semibold text-foreground">
-                May 2026
+                available now
               </span>
               . I&apos;m passionate about building scalable applications and
               working with modern technologies in collaborative, fast-paced
               environments.
             </p>
             <p className="mb-8 text-sm text-muted md:text-base lg:text-lg">
-              Open to roles in full-stack Web development, AI/ML development, and
-              data science. Excited about opportunities at startups and
-              innovative tech companies where I can make an impact.
+              Recently graduated with an MS in Computer Science from NYU (May
+              2026). Excited about opportunities at startups and innovative
+              tech companies where I can make an impact.
             </p>
             <a
               href="#connect"
