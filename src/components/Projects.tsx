@@ -25,18 +25,6 @@ const projects: Project[] = [
     demo: "https://yourparachute.tech",
   },
   {
-    title: "Portafina",
-    period: "Jan 2026",
-    description: [
-      "Built this portfolio on Next.js 16, React 19, and Tailwind — dark/light theming, Framer Motion animations, an in-browser PDF resume viewer, and a chatbot that answers questions about the projects and experience.",
-      "Ran the chatbot on Gemma 3 4B through the Vercel AI SDK's streaming API with server-side output filtering, pinned to the site's content at temperature 0 with a 200-token cap so answers stay grounded and cheap to serve.",
-      "Defended the open endpoint in three layers — input injection detection, 17 output-leak filters, a hardened system prompt — with Upstash Redis rate limiting, a honeypot + time-gate on the lead form, 11 security headers with a full CSP, and JSON-LD + dynamic sitemap for SEO.",
-    ],
-    tags: ["Next.js", "React", "TypeScript", "Vercel AI SDK", "Supabase", "Upstash Redis", "SEO"],
-    link: "https://github.com/sidmandirwala/Portafina",
-    demo: "https://siddhmandirwala.dev",
-  },
-  {
     title: "RAGStack",
     period: "Nov 2024 — Dec 2024",
     description: [
