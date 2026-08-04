@@ -68,10 +68,10 @@ export default function Hero() {
             className="flex flex-wrap justify-center gap-4 md:justify-start"
           >
             <a
-              href="#connect"
+              href="#resume"
               className="rounded-full bg-accent-red px-6 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-red-600 hover:shadow-lg hover:shadow-accent-red/20 md:px-8 md:py-3 md:text-base"
             >
-              Get in Touch
+              View My Resume
             </a>
             <a
               href="#projects"

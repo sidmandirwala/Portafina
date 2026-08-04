@@ -85,7 +85,7 @@ export default function ResumeCallout() {
 
   return (
     <>
-      <section className="px-6 py-16">
+      <section id="resume" className="px-6 py-16">
         <div className="mx-auto max-w-4xl">
           <AnimatedSection>
             <div className="relative overflow-hidden rounded-2xl border border-card-border bg-card p-8 md:p-12">
